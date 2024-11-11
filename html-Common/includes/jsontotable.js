@@ -19,6 +19,7 @@ function jsonToHtmlTable(jsonString) {
 
   htmlTable += '</table>';
   htmlTable += '<button onclick="rebuildJsonFromTable()">Save JSON</button>';
+  htmlTable += '<button onclick="addRow()">Add Row</button>';
   return htmlTable;
 }
 
@@ -129,4 +130,35 @@ function rebuildJsonFromTable() {
 
   console.log(data);
   alert(JSON.stringify(data, null, 2));
+}
+
+function addRow() {
+  const table = document.querySelector("#test table");
+
+  // Check if the table exists
+  if (table) {
+    // Create a new row with two cells (key and value for simplicity)
+    const newRow = document.createElement("tr");
+
+    // Create the key cell (editable)
+    const keyCell = document.createElement("td");
+    keyCell.style = "border:1px solid #b3adad; text-align:center; padding:5px; background: #ffffff; color: #313030;";
+    keyCell.contentEditable = true;
+    keyCell.innerHTML = "&nbsp;"; // Empty placeholder for key
+
+    // Create the value cell (editable)
+    const valueCell = document.createElement("td");
+    valueCell.style = "border:1px solid #b3adad; text-align:center; padding:5px; background: #ffffff; color: #313030;";
+    valueCell.contentEditable = true;
+    valueCell.innerHTML = "&nbsp;"; // Empty placeholder for value
+
+    // Append the cells to the row
+    newRow.appendChild(keyCell);
+    newRow.appendChild(valueCell);
+
+    // Append the new row to the table
+    table.appendChild(newRow);
+  } else {
+    console.error("Table not found inside #test div.");
+  }
 }
