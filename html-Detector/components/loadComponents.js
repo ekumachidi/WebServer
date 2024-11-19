@@ -14,6 +14,8 @@ async function loadComponent(containerId, url, callback) {
           if (containerId === "header-container") {
             loadStatusBarScript();
           }
+          loadAlarmScript();
+          loadFunctions();
       } catch (error) {
           console.error(`Error loading component from ${url}:`, error);
       }
@@ -40,6 +42,18 @@ function initializeMenuToggle() {
 function loadStatusBarScript() {
   const script = document.createElement("script");
   script.src = "/includes/statusbar.js?v=1";
+  document.body.appendChild(script);
+}
+
+function loadAlarmScript() {
+  const script = document.createElement("script");
+  script.src = "/includes/alarm_footer.js?v=1";
+  document.body.appendChild(script);
+}
+
+function loadFunctions() {
+  const script = document.createElement("script");
+  script.src = "/includes/functions.js?v=1";
   document.body.appendChild(script);
 }
 
