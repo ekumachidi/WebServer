@@ -24,7 +24,16 @@ function GetDeviceConfigs() {
     const query = "SELECT * FROM device_config ORDER BY time DESC LIMIT 10";
     GetPSQLTable(query, "root", "daq", true).then(function (result) {
         const deviceConfigOutput = document.getElementById("deviceConfigOutput");
-        deviceConfigOutput.innerHTML = result;
+        // deviceConfigOutput.innerHTML = result;
+
+        // Split the result into rows
+        const rows = result.split("</tr>");
+
+        // Start from the second row as the first row is a header row
+        const dataRows = rows.slice(1).join("</tr>");
+
+        // Append only data rows
+        deviceConfigOutput.innerHTML = dataRows;
     }).catch(function (error) {
         console.error("Error fetching device configurations:", error);
     });

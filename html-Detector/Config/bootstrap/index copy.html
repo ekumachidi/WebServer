@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToolDAQ Webpage</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+        }
+        /* Main Navbar */
+        .navbar-primary {
+            background-color: #3f51b5;
+        }
+        .navbar-primary .navbar-brand,
+        .navbar-primary .nav-link,
+        .navbar-primary .navbar-text {
+            color: #fff !important;
+        }
+        /* Secondary Navbar */
+        .navbar-secondary {
+            background-color: #3949ab;
+        }
+        .navbar-secondary .nav-link {
+            color: #e3f2fd !important;
+        }
+        .side-menu {
+            background-color: white;
+            color: white;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 250px;
+            transform: translateX(-250px);
+            transition: transform 0.3s ease;
+            z-index: 1031;
+        }
+        .side-menu.active {
+            transform: translateX(0);
+        }
+        .side-menu .menu-item {
+            padding: 1rem;
+            color: grey;
+            text-align: left;
+        }
+        .side-menu .menu-item:hover {
+            background-color: #3949ab;
+        }
+        .side-menu .menu-item.active, .navbar-secondary .nav-link.active {
+            background-color: #3f51b5;
+            color: #ffffff !important;
+        }
+        /* Overlay for Side Menu */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: none;
+            z-index: 1030;
+        }
+        .overlay.active {
+            display: block;
+        }
+        /* Content Layout */
+        .content-wrapper {
+            margin-left: 0;
+            transition: margin-left 0.3s ease;
+        }
+        .content-wrapper.active {
+            margin-left: 250px;
+        }
+        .container {
+            margin-top: 2rem;
+        }
+        .card {
+            margin-bottom: 2rem;
+        }
+        .card-header {
+            background-color: #3f51b5;
+            color: white;
+            font-size: 1.25rem;
+        }
+        /* .footer {
+            background-color: #343a40;
+            color: #fff;
+            padding: 1rem;
+            text-align: center;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        } */
+        .footer {
+            background-color: #343a40;
+            color: #fff;
+            padding: 1rem;
+            text-align: center;
+            position: relative;  /* Change from fixed to relative */
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Primary Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-primary">
+        <button class="btn btn-light mr-2" id="menu-toggle"><i class="fas fa-bars"></i></button>
+        <a class="navbar-brand" href="#">ToolDAQ Webpage</a>
+        <span class="navbar-text ml-auto">Exp time: 14:37:55</span>
+        <span class="navbar-text ml-3">User time: 14:37:55</span>
+    </nav>
+
+    <!-- Secondary Navbar -->
+    <nav class="navbar navbar-expand navbar-secondary">
+        <div class="navbar-nav mx-auto">
+            <a class="nav-link" href="#">Home</a>
+            <a class="nav-link" href="#">Shift</a>
+            <a class="nav-link" href="#">Alarms</a>
+            <a class="nav-link" href="#">DAQ</a>
+            <a class="nav-link" href="#">SubSystemExample</a>
+            <a class="nav-link" href="#">Config</a>
+            <a class="nav-link" href="#" style="color: #00FFFF;">Log Out</a>
+        </div>
+    </nav>
+
+    <!-- Side Menu -->
+    <div class="side-menu" id="side-menu">
+      <div class="logo-section">
+        <img src="/images/logo.png" alt="Logo" class="img-fluid">
+      </div>
+
+      <!-- Navigation Links -->
+      <ul class="nav flex-column">
+        <li class="menu-item">
+          <a class="menu-item" href="/index.html">Home</a>
+        </li>
+        <li class="menu-item">
+          <a class="menu-item" href="/Shift">Shift</a>
+        </li>
+        <li class="menu-item">
+          <a class="menu-item" href="/Alarms">Alarms</a>
+        </li>
+        <li class="menu-item">
+          <a class="menu-item" href="/DAQ">DAQ</a>
+        </li>
+        <li class="menu-item">
+          <a class="menu-item" href="/SubSystemExample">SubSystemExample</a>
+        </li>
+        <li class="menu-item">
+          <a class="menu-item" href="/DeviceConfig">DeviceConfig</a>
+        </li>
+        <li class="menu-item">
+          <a class="menu-item" href="/Config">Config</a>
+        </li>
+        <li class="menu-item">
+          <a class="menu-item" href="/login.html">Log Out</a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Overlay for Side Menu -->
+    <div class="overlay" id="overlay"></div>
+
+    <!-- Content Wrapper -->
+    <div class="content-wrapper" id="content-wrapper">
+        <div class="container">
+            <!-- New Device Configurations Section -->
+            <div class="card">
+                <div class="card-header text-center">
+                    New Device Configurations
+                </div>
+                <div class="card-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="device">Device:</label>
+                            <input type="text" class="form-control" id="device" placeholder="Enter device name">
+                        </div>
+                        <div class="form-group">
+                            <label for="author">Author:</label>
+                            <input type="text" class="form-control" id="author" placeholder="Enter author name">
+                        </div>
+                        <div class="form-group">
+                            <label for="description">Description:</label>
+                            <textarea class="form-control" id="description" rows="3" placeholder="Enter description"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="data">Data (JSON format):</label>
+                            <textarea class="form-control" id="data" rows="3" placeholder='{"key": "value"}'></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">Add Device Configuration</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Existing Device Configurations Section -->
+            <div class="card">
+                <div class="card-header text-center">
+                    Existing Device Configurations
+                </div>
+                <div class="card-body">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Time</th>
+                                <th>Device</th>
+                                <th>Version</th>
+                                <th>Author</th>
+                                <th>Description</th>
+                                <th>Data</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td colspan="6" class="text-center">No configurations available</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <!--#include virtual="/shared/header.html" -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Toggle Side Menu
+        $("#menu-toggle").on("click", function() {
+            $("#side-menu").toggleClass("active");
+            $("#content-wrapper").toggleClass("active");
+            $("#overlay").toggleClass("active");
+        });
+        // Close Side Menu when clicking outside
+        $("#overlay").on("click", function() {
+            $("#side-menu").removeClass("active");
+            $("#content-wrapper").removeClass("active");
+            $(this).removeClass("active");
+        });
+    </script>
+</body>
+</html>

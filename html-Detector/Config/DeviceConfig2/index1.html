@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToolDAQ Webpage</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+        }
+        .navbar {
+            background-color: #3f51b5;
+        }
+        .navbar-brand, .nav-link, .navbar-text {
+            color: #fff !important;
+        }
+        .container {
+            margin-top: 2rem;
+        }
+        .card {
+            margin-bottom: 2rem;
+        }
+        .card-header {
+            background-color: #3f51b5;
+            color: white;
+            font-size: 1.25rem;
+        }
+        .table thead th {
+            background-color: #e9ecef;
+        }
+        .footer {
+            background-color: #343a40;
+            color: #fff;
+            padding: 1rem;
+            text-align: center;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <a class="navbar-brand" href="#">ToolDAQ Webpage</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Shift</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Alarms</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">DAQ</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">SubSystemExample</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Config</a></li>
+                <li class="nav-item"><a class="nav-link" href="#" style="color: #00FFFF;">Log Out</a></li>
+            </ul>
+        </div>
+        <span class="navbar-text mr-3">Exp time: 14:37:55</span>
+        <span class="navbar-text">User time: 14:37:55</span>
+    </nav>
+
+    <div class="container">
+        <!-- New Device Configurations Section -->
+        <div class="card">
+            <div class="card-header text-center">
+                New Device Configurations
+            </div>
+            <div class="card-body">
+                <form>
+                    <div class="form-group">
+                        <label for="device">Device:</label>
+                        <input type="text" class="form-control" id="device" placeholder="Enter device name">
+                    </div>
+                    <div class="form-group">
+                        <label for="author">Author:</label>
+                        <input type="text" class="form-control" id="author" placeholder="Enter author name">
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Description:</label>
+                        <textarea class="form-control" id="description" rows="3" placeholder="Enter description"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="data">Data (JSON format):</label>
+                        <textarea class="form-control" id="data" rows="3" placeholder='{"key": "value"}'></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Add Device Configuration</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Existing Device Configurations Section -->
+        <div class="card">
+            <div class="card-header text-center">
+                Existing Device Configurations
+            </div>
+            <div class="card-body">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Time</th>
+                            <th>Device</th>
+                            <th>Version</th>
+                            <th>Author</th>
+                            <th>Description</th>
+                            <th>Data</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td colspan="6" class="text-center">No configurations available</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <button type="button" class="btn btn-light">Test Alarm</button>
+        <span class="mx-3">No current alarm</span>
+        <a href="#" class="btn btn-light">Alarms Page</a>
+        <span class="float-right"><a href="#" class="text-light">Back to Top</a></span>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.4.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
