@@ -1,12 +1,38 @@
- <!-- Secondary Navbar -->
+<!-- Secondary Navbar -->
  <nav class="navbar navbar-expand navbar-secondary">
-  <div class="navbar-nav mx-auto">
-      <a class="nav-link" href="#">Home</a>
-      <a class="nav-link" href="#">Shift</a>
-      <a class="nav-link" href="#">Alarms</a>
-      <a class="nav-link" href="#">DAQ</a>
-      <a class="nav-link" href="#">SubSystemExample</a>
-      <a class="nav-link" href="#">Config</a>
-      <a class="nav-link" href="#" style="color: #00FFFF;">Log Out</a>
+  <div class="navbar-nav ml-3">
+    <a class="nav-link" href="/index.html">Home</a>
+    <!-- New Navbar Links from tablist -->
+    <div class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownShift" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Shift</a>
+      <div class="dropdown-menu" aria-labelledby="navbarDropdownShift">
+        <a class="dropdown-item" href="/Shift/pageA">pageA</a>
+        <a class="dropdown-item" href="/Shift/EventDisplay">EventDisplay</a>
+        <a class="dropdown-item" href="/Shift/MonitoringExample">MonitoringExample</a>
+      </div>
+    </div>
+    <a class="nav-link" href="/Alarms">Alarms</a>
+    <div class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownDAQ" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">DAQ</a>
+      <div class="dropdown-menu" aria-labelledby="navbarDropdownDAQ">
+        <a class="dropdown-item" href="/DAQ/RunControl">RunControl</a>
+        <a class="dropdown-item" href="/DAQ/Logs">Logs</a>
+        <a class="dropdown-item" href="/DAQ/SQL">SQL</a>
+      </div>
+    </div>
+    <div class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownSubSystemExample" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">SubSystemExample</a>
+      <div class="dropdown-menu" aria-labelledby="navbarDropdownSubSystemExample">
+        <a class="dropdown-item" href="/SubSystemExample/pageA">pageA</a>
+      </div>
+    </div>
+    <div class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownConfig" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Config</a>
+      <div class="dropdown-menu" aria-labelledby="navbarDropdownConfig">
+        <a class="dropdown-item" href="/Config/DeviceConfig">DeviceConfig</a>
+        <a class="dropdown-item" href="/Config/test">test</a>
+        <a class="dropdown-item" href="/Config/Bootstrap">Bootstrap</a>
+      </div>
+    </div>
   </div>
 </nav>
