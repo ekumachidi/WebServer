@@ -130,3 +130,45 @@ export function rebuildJsonFromTable() {
   console.log(data);
   alert(JSON.stringify(data, null, 2));
 }
+
+export function jsonDiffToHtmlTable(jsonStr1, jsonStr2) {
+  let obj1, obj2;
+  try {
+    obj1 = JSON.parse(jsonStr1);
+    obj2 = JSON.parse(jsonStr2);
+  } catch (e) {
+    return `<p>Error: Invalid JSON input.</p>`;
+  }
+
+  const allKeys = new Set([...Object.keys(obj1), ...Object.keys(obj2)]);
+  let html = `
+    <table style="border:1px solid #b3adad; border-collapse:collapse; width: 100%;">
+      <thead>
+        <tr>
+          <th style="border:1px solid #b3adad; padding:5px;">Key</th>
+          <th style="border:1px solid #b3adad; padding:5px;">JSON 1</th>
+          <th style="border:1px solid #b3adad; padding:5px;">JSON 2</th>
+        </tr>
+      </thead>
+      <tbody>
+  `;
+
+  for (const key of allKeys) {
+    const val1 = JSON.stringify(obj1[key], null, 2);
+    const val2 = JSON.stringify(obj2[key], null, 2);
+
+    const isDifferent = val1 !== val2;
+    const style = isDifferent ? 'background-color: #fff3cd;' : 'background-color: #ffffff;';
+
+    html += `
+      <tr>
+        <td style="border:1px solid #b3adad; padding:5px;">${key}</td>
+        <td style="border:1px solid #b3adad; padding:5px; ${style}">${val1 || ''}</td>
+        <td style="border:1px solid #b3adad; padding:5px; ${style}">${val2 || ''}</td>
+      </tr>
+    `;
+  }
+
+  html += '</tbody></table>';
+  return html;
+}

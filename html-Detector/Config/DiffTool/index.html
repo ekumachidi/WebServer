@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Compare Config Versions</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.23.4/ace.js"></script>
+  <style>
+    .container {
+      padding: 20px;
+    }
+
+    .selectors {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .diff-output {
+      border: 1px solid #ccc;
+      height: 400px;
+      overflow: auto;
+    }
+  </style>
+</head>
+
+<body>
+  <!--#include virtual="/includes/header.html" -->
+  <!--#include virtual="../subheader.html" -->
+  <!--#include virtual="/includes/drawer.html" -->
+  <div class="container">
+    <h3>Compare Device Config Versions</h3>
+
+    <div class="selectors">
+      <select id="deviceDropdown"></select>
+      <select id="versionA"></select>
+      <select id="versionB"></select>
+      <button id="compareBtn">Compare</button>
+      <button id="toggleViewBtn">Toggle Table View</button>
+    </div>
+
+    <div id="diffOutput" class="diff-output"></div>
+  </div>
+
+  <script type="module" src="./compareConfigs.js"></script>
+</body>
+<!--#include virtual="/includes/footer.html" -->
+
+</html>
